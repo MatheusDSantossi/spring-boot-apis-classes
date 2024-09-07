@@ -53,6 +53,16 @@ public class Controller {
         return action.count();
     }
 
+    @GetMapping("/api/orderNames")
+    public List<People> orderByNames() {
+        return action.findByOrderByNameDesc();
+    }
+
+    @GetMapping("/api/orderNamesV2")
+    public List<People> orderByNamesV2() {
+        return action.findByNameOrderByAgeAsc("Matheus");
+    }
+
     @GetMapping("")
     public String message() {
         return "Hello World!";

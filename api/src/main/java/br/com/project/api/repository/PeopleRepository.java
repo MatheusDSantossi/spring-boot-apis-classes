@@ -12,5 +12,10 @@ public interface PeopleRepository extends CrudRepository<People, Integer> {
     List<People> findAll(); 
 
     People findByCode(int code);
+
+    // List<People> findByOrderByName();
+    List<People> findByOrderByNameDesc();
+
+    List<People> findByNameOrderByAgeAsc(String name);
     
 }
