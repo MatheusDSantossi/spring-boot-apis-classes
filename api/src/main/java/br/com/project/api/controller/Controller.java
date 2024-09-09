@@ -2,6 +2,8 @@ package br.com.project.api.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,8 +65,34 @@ public class Controller {
         return action.findByNameOrderByAgeAsc("Matheus");
     }
 
+    @GetMapping("/api/nameContain")
+    public List<People> nameContain() {
+        return action.findByNameContaining("u");
+    }
+
+    @GetMapping("api/startsWith")
+    public List<People> nameStartsWith() {
+        return action.findByNameStartsWith("Ma");
+    }
+
+    @GetMapping("api/endsWith")
+    public List<People> nameEndsWith() {
+        return action.findByNameEndsWith("th");
+    }
+
+    @GetMapping("api/sumAges")
+    public int sumAges() {
+        return action.sumAges();
+    }
+
+    @GetMapping("api/ageGreaterEqual")
+    public List<People> ageGreaterEqual() {
+        return action.ageGreaterEqual(18);
+    }
+
     @GetMapping("")
     public String message() {
+
         return "Hello World!";
     }
 
@@ -81,5 +109,10 @@ public class Controller {
     @PostMapping("/people")
     public People people(@RequestBody People p) {
         return p;
+    }
+
+    @GetMapping("/status")
+    public ResponseEntity<?> status() {
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
