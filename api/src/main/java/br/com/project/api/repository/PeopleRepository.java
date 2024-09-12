@@ -30,4 +30,6 @@ public interface PeopleRepository extends CrudRepository<People, Integer> {
     
     @Query(value = "SELECT * FROM people WHERE age >= :age", nativeQuery = true)
     List<People> ageGreaterEqual(int age);
+
+    int countByCode(int code);
 }
